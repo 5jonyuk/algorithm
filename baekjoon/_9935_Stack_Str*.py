@@ -14,4 +14,4 @@ for ch in S:
 if (not stack):
     print("FRULA")
 else:
-    print("".join(map(str, stack)))
+    print("".join(stack))
