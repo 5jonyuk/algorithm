@@ -20,7 +20,7 @@ Integer
 - 메서드: o (toString, parseInt 등)
 - 컬렉션 사용: o
 - 속도: 상대적으로 느림
-*/ 
+*/
 public class _13172 {
     static BigInteger X = BigInteger.valueOf(1000000007L);
 
