@@ -4,3 +4,4 @@ Algorithm.iml
 **/.DS_Store
 .vscode
 cppBuild/
+/baekjoon/tempCodeRunnerFile.cpp
