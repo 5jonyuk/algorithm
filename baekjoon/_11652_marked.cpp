@@ -2,9 +2,6 @@
 using namespace std;
 
 int n;
-long long cnt = 0;
-long long maxCnt = 0;
-long long maxVal = LLONG_MIN;
 long long arr[100001];
 
 int main() {
@@ -12,30 +9,28 @@ int main() {
     cin.tie(0);
 
     cin >> n;
-
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
     }
-
     sort(arr, arr + n);
 
+    int cnt = 0;
+    int maxCnt = 0;
+    long long maxVal = LONG_MIN;
+
     for (int i = 0; i < n; i++) {
-        if (i == 0) {
+        if (i == 0 || arr[i] == arr[i - 1]) {
             cnt++;
             continue;
-        }
-        if (arr[i] == arr[i - 1]) {
-            cnt++;
         } else {
-            if (maxCnt < cnt) {
-                maxCnt = cnt;
+            if (cnt > maxCnt) {
                 maxVal = arr[i - 1];
+                maxCnt = cnt;
             }
             cnt = 1;
         }
     }
-
-    if (maxCnt < cnt) {
+    if (cnt > maxCnt) {
         maxVal = arr[n - 1];
     }
 
