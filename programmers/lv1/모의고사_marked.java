@@ -1,44 +1,40 @@
 package lv1;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-// Arrays의 copyOfRange(원본, 시작인덱스, 마지막인덱스) -> 원본 배열에서 시작인덱스부터 마지막인덱스 -1 까지 복사
-public class 모의고사_marked {
-    // public int[] solution(int[] array, int[][] commands) {
-    // List<Integer> answer = new ArrayList<>();
+public class example {
+    public int[] solution(int[] answers) {
+        int[][] patterns = {
+                { 1, 2, 3, 4, 5 },
+                { 2, 1, 2, 3, 2, 4, 2, 5 },
+                { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 }
+        };
 
-    // for (int[] c : commands) {
-    // int start = c[0] - 1;
-    // int end = c[1] - 1;
-    // int target = c[2] - 1;
-    // List<Integer> arr = new ArrayList<>();
+        int[] scores = new int[3];
 
-    // for (int i = start; i <= end; i++) {
-    // arr.add(array[i]);
-    // }
+        for (int i = 0; i < answers.length; i++) {
+            for (int j = 0; j < patterns.length; j++) {
+                if (answers[i] == patterns[j][i % patterns[j].length]) {
+                    scores[j]++;
+                }
+            }
+        }
+        int maxScore = Arrays.stream(scores)
+                .max()
+                .getAsInt();
 
-    // int value = arr.stream()
-    // .sorted()
-    // .skip(target)
-    // .findFirst()
-    // .orElseThrow();
+        List<Integer> result = new ArrayList<>();
 
-    // answer.add(value);
-    // }
-    // return answer.stream()
-    // .mapToInt(i -> i.intValue())
-    // .toArray();
-    // }
-
-    public int[] solution(int[] array, int[][] commands) {
-        int[] answer = new int[commands.length];
-
-        for (int i = 0; i < commands.length; i++) {
-            int[] arr = Arrays.copyOfRange(array, commands[i][0] - 1, commands[i][1]);
-            Arrays.sort(arr);
-            answer[i] = arr[commands[i][2] - 1];
+        for (int i = 0; i < 3; i++) {
+            if (scores[i] == maxScore) {
+                result.add(i + 1);
+            }
         }
 
-        return answer;
+        return result.stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
     }
 }
